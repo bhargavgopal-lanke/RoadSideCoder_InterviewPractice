@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tabs</title>
-</head>
-<body>
-    
+    <style>
+      .tabContent {
+        display: none;
+      }
+
+      .tabLinks {
+        background-color: #f3f3f3;
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+      }
+      .tabLinks:hover {
+        background-color: #ddd;
+      }
+      .tabLinks:active {
+        background-color: #ddd;
+        color: #333;
+      }
+      .tabContent.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tab-container" class="tabs"></div>
+    <div id="tab-content-container"></div>
+
     <script src="./Tabs.js"></script>
-</body>
+  </body>
 </html>
