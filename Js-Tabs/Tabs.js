@@ -37,25 +37,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
-
-    function openTab(tabId) {
-      const tabContents = document.querySelectorAll(".tabContent");
-      const tabLinks = document.querySelectorAll(".tabLinks");
-
-      tabContents.forEach((tab) => tab.classList.remove("active"));
-      tabLinks.forEach((tab) => tab.classList.remove("active"));
-      document.getElementById(tabId).classList.add("active");
-      document
-        .querySelector(`button[data-tab="${tabId}"]`)
-        .classList.add("active");
-    }
   }
   rendertabs();
   document.getElementById(activeTab).classList.add("active");
-  document
-    .querySelector(`button[data-tab="${activeTab}"]`)
-    .classList.add("active");
+  // document
+  //   .querySelector(`button[data-tab="${activeTab}"]`)
+  //   .classList.add("active");
 });
+
+// function to diplay the data using active class for selected item.
+// remove active class for all the elements.
+function openTab(tabId) {
+  const tabContents = document.querySelectorAll(".tabContent");
+  const tabLinks = document.querySelectorAll(".tabLinks");
+
+  tabContents.forEach((tab) => tab.classList.remove("active"));
+  tabLinks.forEach((tab) => tab.classList.remove("active"));
+  document.getElementById(tabId).classList.add("active");
+  // document
+  //   .querySelector(`button[data-tab="${tabId}"]`)
+  //   .classList.add("active");
+}
 
 function tabsButtons(tabContainer, tabContentContainer) {
   // loop through existing data and create a button
