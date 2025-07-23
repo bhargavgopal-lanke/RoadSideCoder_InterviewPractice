@@ -25,19 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "tab-content-container"
     );
 
-    tabsData.forEach((tab) => {
-      const tabButton = document.createElement("button");
-      tabButton.classList.add("tabLinks");
-      tabButton.textContent = tab.title;
-      tabButton.setAttribute("data-tab", tab.id);
-      tabContainer.appendChild(tabButton);
-
-      const tabContent = document.createElement("div");
-      tabContent.id = tab.id;
-      tabContent.classList.add("tabContent");
-      tabContent.innerHTML = `<h3>${tab.title}</h3><p>${tab.content}</p>`;
-      tabContentContainer.appendChild(tabContent);
-    });
+    // creating UI for tab btns and content for the tabs inside this function.
+    tabsButtons(tabContainer, tabContentContainer);
 
     tabContainer.addEventListener("click", (e) => {
       if (e.target.matches(".tabLinks")) {
@@ -67,3 +56,25 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelector(`button[data-tab="${activeTab}"]`)
     .classList.add("active");
 });
+
+function tabsButtons(tabContainer, tabContentContainer) {
+  // loop through existing data and create a button
+  // add the title and id to this button
+  // and append this buttons as a child to parent
+  tabsData.forEach((tab) => {
+    const tabButton = document.createElement("button");
+    tabButton.classList.add("tabLinks");
+    tabButton.textContent = tab.title;
+    tabButton.setAttribute("data-tab", tab.id);
+    tabContainer.appendChild(tabButton);
+
+    // create a div and dynamic id and title and content to this div
+    // add a class of tabContent to this div
+    // append this div to a parent div.
+    const tabContent = document.createElement("div");
+    tabContent.id = tab.id;
+    tabContent.classList.add("tabContent");
+    tabContent.innerHTML = `<h3>${tab.title}</h3><p>${tab.content}</p>`;
+    tabContentContainer.appendChild(tabContent);
+  });
+}
