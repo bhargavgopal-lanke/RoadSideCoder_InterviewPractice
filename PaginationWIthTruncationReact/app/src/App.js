@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const totalItems = 10;
 function App() {
   const [apiData, setApiData] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   const fetchData = async () => {
     try {
@@ -24,7 +24,7 @@ function App() {
 
   const handleClick = (selectedPage) => {
     // prevent unnecessary re-renders
-    if (selectedPage >= 1 && totalProducts && selectedPage !== page)
+    if (selectedPage >= 0 && totalProducts && selectedPage !== page)
       setPage(selectedPage);
   };
 
@@ -35,13 +35,29 @@ function App() {
   return (
     <div className="App">
       <div className="pagination">
+        <button
+          onClick={() => setPage((prev) => prev - 1)}
+          disabled={page === 0}
+        >
+          ◀️
+        </button>
         {[...Array(totalProducts).keys()].map((x) => {
           return (
-            <button key={x} onClick={() => handleClick(x)}>
-              {x}
+            <button
+              key={x}
+              className={page === x ? "active" : ""}
+              onClick={() => handleClick(x)}
+            >
+              {x + 1}
             </button>
           );
         })}
+        <button
+          onClick={() => setPage((prev) => prev + 1)}
+          disabled={page === totalProducts - 1}
+        >
+          ▶️
+        </button>
       </div>
       {apiData?.length > 0 &&
         apiData?.slice(start, end).map((x) => {
