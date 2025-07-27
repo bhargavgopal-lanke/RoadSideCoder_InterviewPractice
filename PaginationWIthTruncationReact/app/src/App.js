@@ -23,7 +23,9 @@ function App() {
   const end = start + totalItems;
 
   const handleClick = (selectedPage) => {
-    setPage(selectedPage);
+    // prevent unnecessary re-renders
+    if (selectedPage >= 1 && totalProducts && selectedPage !== page)
+      setPage(selectedPage);
   };
 
   useEffect(() => {
