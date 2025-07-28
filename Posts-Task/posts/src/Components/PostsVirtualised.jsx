@@ -1,31 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { FixedSizeList } from "react-window";
+import PostCard from "./PostCard";
 
-const PostsVirtualised = () => {
-  const [posts, setPosts] = useState([]);
-  const fetchPosts = async () => {
-    const res = await fetch(
-      "https://jsonplaceholder.typicode.com/posts?_limit=50"
-    );
-    const data = await res.json();
-    console.log(data);
-    setPosts(data);
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
+const PostsVirtualised = ({ posts }) => {
+  const Post = ({ index, style }) => (
+    <div style={style}>
+      <PostCard key={posts[index].id} post={posts[index]} />
+    </div>
+  );
   return (
     <div>
-      {posts.length > 0 &&
-        posts.map((x) => {
-          return (
-            <div className="posts-sec" key={x.id}>
-              <h1>{x.title}</h1>
-              <p>{x.body}</p>
-            </div>
-          );
-        })}
+      <FixedSizeList
+        height={window.innerHeight}
+        itemCount={posts.length}
+        itemSize={190}
+        width="100%"
+        className="scroll-container"
+      >
+        {Post}
+      </FixedSizeList>
     </div>
   );
 };
