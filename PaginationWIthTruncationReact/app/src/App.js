@@ -9,7 +9,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const data = await fetch("https://dummyjson.com/products?limit=150");
+      const data = await fetch("https://dummyjson.com/products?limit=100");
       const res = await data.json();
       if (res && res?.products) {
         setApiData(res?.products);
@@ -20,12 +20,12 @@ function App() {
   };
 
   const totalProducts = Math.ceil(apiData.length / totalItems);
-  const start = (page - 1) * totalItems;
-  const end = start + totalItems;
+  const start = page * totalItems - totalItems;
+  const end = page * totalItems;
 
   const handleClick = (selectedPage) => {
     // prevent unnecessary re-renders
-    if (selectedPage >= 0 && totalProducts && selectedPage !== page)
+    if (selectedPage >= 1 && totalProducts && selectedPage !== page)
       setPage(selectedPage);
   };
 
@@ -48,7 +48,6 @@ function App() {
   const renderPageNumbers = () => {
     const pageNumbers = [];
     if (totalProducts <= maxVisibilePages) {
-      console.log("ghjjhhhjh")
       for (let i = 1; i < totalProducts; i++) {
         pageNumbers.push(renderPageKey(i, i));
       }
