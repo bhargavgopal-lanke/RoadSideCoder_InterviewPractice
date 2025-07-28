@@ -5,10 +5,11 @@ const totalItems = 10;
 function App() {
   const [apiData, setApiData] = useState([]);
   const [page, setPage] = useState(1);
+  const maxVisibilePages = 10;
 
   const fetchData = async () => {
     try {
-      const data = await fetch("https://dummyjson.com/products?limit=100");
+      const data = await fetch("https://dummyjson.com/products?limit=150");
       const res = await data.json();
       if (res && res?.products) {
         setApiData(res?.products);
@@ -19,7 +20,7 @@ function App() {
   };
 
   const totalProducts = Math.ceil(apiData.length / totalItems);
-  const start = page * totalItems;
+  const start = (page - 1) * totalItems;
   const end = start + totalItems;
 
   const handleClick = (selectedPage) => {
@@ -32,6 +33,46 @@ function App() {
     fetchData();
   }, []);
 
+  const renderPageKey = (currentPage, key) => {
+    return (
+      <button
+        key={key}
+        className={page === currentPage ? "active" : ""}
+        onClick={() => handleClick(currentPage)}
+      >
+        {currentPage}
+      </button>
+    );
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    if (totalProducts <= maxVisibilePages) {
+      console.log("ghjjhhhjh")
+      for (let i = 1; i < totalProducts; i++) {
+        pageNumbers.push(renderPageKey(i, i));
+      }
+    } else {
+      // truncation logic
+      const startPage = Math.max(1, page - Math.floor(maxVisibilePages / 2));
+      const endPage = Math.min(totalProducts, startPage + maxVisibilePages - 1);
+      if (startPage > 1) {
+        if (startPage > 2) pageNumbers.push(renderPageKey(1));
+        pageNumbers.push(renderPageKey("...", "ellipsis-start"));
+      }
+      for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(renderPageKey(i));
+      }
+      if (endPage < totalItems) {
+        pageNumbers.push(renderPageKey("...", "ellipsis-start"));
+        if (endPage < totalItems - 1) {
+          pageNumbers.push(renderPageKey(totalItems));
+        }
+      }
+    }
+    return pageNumbers;
+  };
+
   return (
     <div className="App">
       <div className="pagination">
@@ -41,17 +82,18 @@ function App() {
         >
           ◀️
         </button>
-        {[...Array(totalProducts).keys()].map((x) => {
+        {/* {[...Array(totalProducts).keys()].map((x, i) => {
           return (
             <button
-              key={x}
-              className={page === x ? "active" : ""}
-              onClick={() => handleClick(x)}
+              key={i}
+              className={page === i ? "active" : ""}
+              onClick={() => handleClick(i)}
             >
-              {x + 1}
+              {i + 1}
             </button>
           );
-        })}
+        })} */}
+        {renderPageNumbers()}
         <button
           onClick={() => setPage((prev) => prev + 1)}
           disabled={page === totalProducts - 1}
