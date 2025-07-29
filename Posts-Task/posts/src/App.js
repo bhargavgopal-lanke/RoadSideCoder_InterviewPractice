@@ -7,8 +7,7 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const fetchApiData = fetchPosts(setPosts);
-    console.log(fetchApiData);
+    fetchPosts({setPosts});
   }, []);
 
   return (
