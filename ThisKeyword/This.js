@@ -19,4 +19,20 @@ const user = {
   },
 };
 
-user.getDetails();
+// user.getDetails();
+
+// example 3
+// clearly in this example we can see this refers to the object it belongs to.
+
+const userTwo = {
+  name: "Gopal",
+  age: 29,
+  childObject: {
+    nameTwo: "React Developer",
+    getDetails() {
+      console.log(this.nameTwo, "and", this.name);
+    },
+  },
+};
+
+userTwo.childObject.getDetails();
