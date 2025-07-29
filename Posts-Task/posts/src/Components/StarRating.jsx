@@ -12,7 +12,7 @@ const StarRating = ({ size = 5, rating, onChange = () => {} }) => {
         .map((_, index) => {
           let starClass = "star";
           const starValue = index + 1;
-
+      
           if (hoverRating >= starValue) {
             starClass += " hover";
           } else if (rating >= starValue) {
@@ -23,7 +23,7 @@ const StarRating = ({ size = 5, rating, onChange = () => {} }) => {
             <span
               key={index}
               className={starClass}
-              onClick ={() => onChange(starValue)}
+              onClick={() => onChange(starValue)}
               onMouseEnter={() => handleMouseHover(starValue)}
               onMouseLeave={() => handleMouseHover(0)}
             >
