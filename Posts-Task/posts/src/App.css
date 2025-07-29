@@ -14,4 +14,9 @@
 
 .star {
   font-size: 25px;
+  cursor: pointer;
+}
+
+.star.hover {
+  color: gold;
 }
