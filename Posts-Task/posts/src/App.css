@@ -10,3 +10,17 @@
 .scroll-container::-webkit-scrollbar-track {
   background-color: #f1f1f1;
 }
+
+
+.star {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.star.hover {
+  color: gold;
+}
+
+.star.active {
+  color: gold;
+}

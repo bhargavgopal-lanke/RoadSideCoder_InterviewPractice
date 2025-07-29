@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import PostsVirtualised from "./Components/PostsVirtualised";
+import { fetchPosts } from "./utils/PostsApi";
+import StarRatedComponent from "./Components/StarRatedComponent";
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const fetchPosts = async () => {
-    const res = await fetch(
-      "https://jsonplaceholder.typicode.com/posts?_limit=50"
-    );
-    const data = await res.json();
-    console.log(data);
-    setPosts(data);
-  };
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts({ setPosts });
   }, []);
 
   return (
     <div className="App">
-      <PostsVirtualised posts={posts} />
+      {/* <PostsVirtualised posts={posts} /> */}
+      <StarRatedComponent />
     </div>
   );
 }
