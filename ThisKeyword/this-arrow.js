@@ -12,3 +12,18 @@ const arrowUserObj = {
 };
 
 arrowUserObj.getDetails();
+
+// class methods
+
+class user {
+  constructor(n) {
+    this.name = n;
+  }
+
+  getName() {
+    console.log("class this example", this.name);
+  }
+}
+
+const User = new user("Bhargav");
+User.getName();
