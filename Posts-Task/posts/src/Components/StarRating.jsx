@@ -12,7 +12,6 @@ const StarRating = ({ size = 5, rating, onChange = () => {} }) => {
         .map((_, index) => {
           let starClass = "star";
           const starValue = index + 1;
-      
           if (hoverRating >= starValue) {
             starClass += " hover";
           } else if (rating >= starValue) {

@@ -3,10 +3,11 @@
 // and getDetails functions refers to current object it belongs to
 
 const arrowUserObj = {
-  name: "Bhargav",
+  name: "Gopal",
   age: 29,
   getDetails() {
-    const nestedArrFun = () => console.log("name", this.name);
+    const nestedArrFun = () =>
+      console.log("arrow method name ==>   ", this.name);
     nestedArrFun();
   },
 };
@@ -21,9 +22,22 @@ class user {
   }
 
   getName() {
-    console.log("class this example", this.name);
+    console.log("class this example ==>  ", this.name);
   }
 }
 
 const User = new user("Bhargav");
 User.getName();
+
+// prctice
+
+const thisObj = {
+  name: "test",
+  age: 29,
+  getDetails() {
+    const arrow = () => console.log(this.name);
+    arrow();
+  },
+};
+
+thisObj.getDetails();
