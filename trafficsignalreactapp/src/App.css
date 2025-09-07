@@ -1,0 +1,22 @@
+.container {
+  width: 1300px;
+  margin: 0 auto;
+}
+
+.signal-lights-main {
+  background-color: black;
+  border-radius: 10px;
+  width: 150px;
+  padding: 20px 0;
+  margin: 0 auto;
+}
+
+.traffic-lights {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
