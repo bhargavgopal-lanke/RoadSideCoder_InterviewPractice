@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
+import {
+  trafficLights,
+  trafficLightsColor,
+  trafficLightsState,
+} from "../utils/util";
 
-const TrafficLights = ({ lights }) => {
-  const [currentLight, setCurrentLight] = useState("green");
+type trafficLightsProps = { lights: trafficLights };
+const TrafficLights = ({ lights }: trafficLightsProps) => {
+  const [currentLight, setCurrentLight] = useState<trafficLightsColor>("green");
 
   useEffect(() => {
-    const { duration, next } = lights[currentLight];
+    const { duration, next }: trafficLightsState = lights[currentLight];
 
     const timer = setTimeout(() => {
       setCurrentLight(next);
@@ -13,7 +19,7 @@ const TrafficLights = ({ lights }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [currentLight]);
+  }, [lights, currentLight]);
 
   return (
     <div>
@@ -25,7 +31,7 @@ const TrafficLights = ({ lights }) => {
               key={i}
               style={{
                 backgroundColor:
-                  color === currentLight && lights[color].backgroundColor,
+                  color === currentLight ? lights[color].backgroundColor : "",
               }}
             ></div>
           );
