@@ -1,16 +1,16 @@
 export const trafficLightsObj = {
   green: {
-    color: "green",
+    backgroundColor: "green",
     duration: 4000,
     next: "yellow",
   },
   yellow: {
-    color: "yellow",
+    backgroundColor: "yellow",
     duration: 2000,
     next: "red",
   },
   red: {
-    color: "red",
+    backgroundColor: "red",
     duration: 5000,
     next: "green",
   },

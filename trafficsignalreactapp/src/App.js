@@ -4,16 +4,6 @@ import TrafficLights from "./Components/TrafficLights";
 import { trafficLightsObj } from "./utils/util";
 
 function App() {
-  const [currentLight, setCurrentLight] = useState("green");
-
-  useEffect(() => {
-    const timer = setTimeout(() => {});
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
-
   return (
     <div className="container">
       <h1 style={{ textAlign: "center" }}> Traffic App</h1>
