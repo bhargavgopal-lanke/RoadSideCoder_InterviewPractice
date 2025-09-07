@@ -19,7 +19,7 @@ const config: Config.InitialOptions = {
     '!src/index.tsx',
     '!src/setupTests.ts',
   ],
-  coverageDirectory: 'coverage',
+  coverageDirectory: "<rootDir>/coverage",
   coverageReporters: ['json', 'lcov', 'text', 'clover'],
   coverageThreshold: {
     global: {
