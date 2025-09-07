@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
-  trafficLights,
+  trafficLightsInterface,
   trafficLightsColor,
   trafficLightsState,
 } from "../utils/util";
 
-type trafficLightsProps = { lights: trafficLights };
+type trafficLightsProps = { lights: trafficLightsInterface };
 const TrafficLights = ({ lights }: trafficLightsProps) => {
   const [currentLight, setCurrentLight] = useState<trafficLightsColor>("green");
 

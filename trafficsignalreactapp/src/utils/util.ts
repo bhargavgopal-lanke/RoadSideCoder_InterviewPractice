@@ -5,7 +5,7 @@ export interface trafficLightsState {
   duration: number,
   next: trafficLightsColor
 }
-export interface trafficLights {
+export interface trafficLightsInterface {
   green: trafficLightsState,
   yellow: trafficLightsState,
   red: trafficLightsState,
