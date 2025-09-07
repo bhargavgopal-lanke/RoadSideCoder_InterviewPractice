@@ -1,4 +1,16 @@
-const trafficLightsObj = {
+
+export interface trafficLightsState {
+  backgroundColor: string,
+  duration: number,
+  next: string
+}
+export interface trafficLights {
+  green: trafficLightsState,
+  yellow: trafficLightsState,
+  red: trafficLightsState,
+}
+
+export const trafficLightsObj = {
   green: {
     backgroundColor: "green",
     duration: 4000,
@@ -16,4 +28,4 @@ const trafficLightsObj = {
   },
 };
 
-module.exports = { trafficLightsObj };
+

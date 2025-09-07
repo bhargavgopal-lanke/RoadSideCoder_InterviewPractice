@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { trafficLightsObj } from "./utils/util";
 import TrafficLights from "./Components/TrafficLights";
 
 function App() {
