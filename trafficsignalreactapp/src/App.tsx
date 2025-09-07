@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
 import TrafficLights from "./Components/TrafficLights";
-import { trafficLightsObj } from "./utils/util";
 
 function App() {
   return (

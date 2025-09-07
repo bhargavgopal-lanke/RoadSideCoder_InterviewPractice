@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const TrafficLights = ({ lights }) => {
+const TrafficLights = ({ lights }: any) => {
   const [currentLight, setCurrentLight] = useState("green");
 
   useEffect(() => {

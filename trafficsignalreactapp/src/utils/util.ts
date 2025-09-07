@@ -1,4 +1,4 @@
-export const trafficLightsObj = {
+const trafficLightsObj = {
   green: {
     backgroundColor: "green",
     duration: 4000,
@@ -15,3 +15,5 @@ export const trafficLightsObj = {
     next: "green",
   },
 };
+
+module.exports = { trafficLightsObj };
