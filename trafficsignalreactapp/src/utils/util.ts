@@ -1,8 +1,9 @@
 
+export type trafficLightsColor = "green" | "yellow" | "red";
 export interface trafficLightsState {
   backgroundColor: string,
   duration: number,
-  next: string
+  next: trafficLightsColor
 }
 export interface trafficLights {
   green: trafficLightsState,
@@ -10,21 +11,23 @@ export interface trafficLights {
   red: trafficLightsState,
 }
 
+
+
 export const trafficLightsObj = {
   green: {
     backgroundColor: "green",
     duration: 4000,
-    next: "yellow",
+    next: "yellow" as trafficLightsColor,
   },
   yellow: {
     backgroundColor: "yellow",
     duration: 2000,
-    next: "red",
+    next: "red" as trafficLightsColor,
   },
   red: {
     backgroundColor: "red",
     duration: 5000,
-    next: "green",
+    next: "green" as trafficLightsColor,
   },
 };
 
