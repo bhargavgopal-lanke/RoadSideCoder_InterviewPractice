@@ -3,39 +3,45 @@ import "@testing-library/jest-dom";
 import App from "./App";
 
 describe("App Component", () => {
-  const setUp = () => {
+  const componentValues = () => {
     render(<App />);
     let input = screen.getByRole("textbox");
     let button = screen.getByText("Submit");
+    let allInputs = screen.getAllByRole("textbox");
+    let allButtons = screen.getAllByText("Submit");
     return {
       input,
       button,
+      allInputs,
+      allButtons,
     };
   };
-
   test("renders App component", () => {
-    const { button } = setUp();
+    const { button } = componentValues();
     expect(button).toBeInTheDocument();
   });
 
   test("calls handlechange and updates input value", () => {
-    const { input } = setUp();
+    const { input } = componentValues();
     fireEvent.change(input, { target: { value: "Bhargav" } });
     expect(input).toHaveValue("Bhargav");
   });
 
   test("calls handlesubmit and updates todo array", () => {
-    const { input, button } = setUp();
+    const { input, button } = componentValues();
     fireEvent.change(input, { target: { value: "gopal" } });
     fireEvent.click(button);
     expect(input).toHaveValue("");
   });
 
   describe("todo items tests", () => {
+    const untillAddTask = (text) => {
+      const { allButtons, allInputs } = componentValues();
+      fireEvent.change(allInputs[0], { target: { value: text } });
+      fireEvent.click(allButtons[0]);
+    };
     const todoListSimulationLogic = (taskText) => {
-      const { input, button } = setUp();
-      fireEvent.change(input, { target: { value: taskText } });
-      fireEvent.click(button);
+      untillAddTask(taskText);
       const label = screen.getByText(taskText);
       const checkbox = screen.getByRole("checkbox");
       const deleteButton = screen.getByText("Delete");
@@ -52,6 +58,16 @@ describe("App Component", () => {
       const { label, checkbox } = todoListSimulationLogic("this is first task");
       fireEvent.click(checkbox);
       expect(label).toHaveStyle("text-decoration: line-through");
+    });
+
+    test("handlecheck affects only matchin id", () => {
+      untillAddTask("Task One");
+      untillAddTask("Task Two");
+      const labels = screen.getAllByText(/Task/);
+      const checkboxes = screen.getAllByRole("checkbox");
+      fireEvent.click(checkboxes[1]);
+      expect(labels[0]).not.toHaveStyle("text-decoration: line-through");
+      expect(labels[1]).toHaveStyle("text-decoration: line-through");
     });
 
     test("the delete button exists", () => {
