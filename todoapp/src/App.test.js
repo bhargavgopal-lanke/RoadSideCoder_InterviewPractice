@@ -7,13 +7,9 @@ describe("App Component", () => {
     render(<App />);
     let input = screen.getByRole("textbox");
     let button = screen.getByText("Submit");
-    let allInputs = screen.getAllByRole("textbox");
-    let allButtons = screen.getAllByText("Submit");
     return {
       input,
       button,
-      allInputs,
-      allButtons,
     };
   };
   test("renders App component", () => {
@@ -36,7 +32,9 @@ describe("App Component", () => {
 
   describe("todo items tests", () => {
     const untillAddTask = (text) => {
-      const { allButtons, allInputs } = componentValues();
+      render(<App />);
+      let allInputs = screen.getAllByRole("textbox");
+      let allButtons = screen.getAllByText("Submit");
       fireEvent.change(allInputs[0], { target: { value: text } });
       fireEvent.click(allButtons[0]);
     };
