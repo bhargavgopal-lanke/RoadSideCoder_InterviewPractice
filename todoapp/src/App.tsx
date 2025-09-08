@@ -4,14 +4,20 @@ import "./App.css";
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [itemId, setItemId] = useState(0);
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState<todoObjInterface[]>([]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setInputValue(e.target.value);
   };
 
-  const hanldeSubmit = (e) => {
-    const todoObj = {
+  interface todoObjInterface {
+    id: number;
+    task: string;
+    completed: boolean;
+  }
+
+  const hanldeSubmit = () => {
+    const todoObj: todoObjInterface = {
       id: itemId,
       task: inputValue,
       completed: false,
@@ -24,7 +30,7 @@ function App() {
     setItemId(itemId + 1);
   };
 
-  const handleCheck = (id) => {
+  const handleCheck = (id: number) => {
     setTodo(
       todo.map((t) => {
         if (t.id === id) {
@@ -38,19 +44,23 @@ function App() {
       })
     );
   };
-  const hanldeDelete = (id) => {
+  const hanldeDelete = (id: number) => {
     const copyTodo = [...todo];
-    const filterTodo = copyTodo.filter((item) => item.id !== id);
+    const filterTodo = copyTodo.filter(
+      (item: todoObjInterface) => item.id !== id
+    );
     setTodo(filterTodo);
   };
 
   return (
     <div className="App">
       <input type="text" value={inputValue} onChange={handleChange} />
-      <button onClick={hanldeSubmit}>Submit</button>
+      <button onClick={hanldeSubmit} style={{ margin: "0 20px 20px" }}>
+        Submit
+      </button>
 
       {todo &&
-        todo?.map((x) => {
+        todo?.map((x: todoObjInterface) => {
           return (
             <div key={x.id}>
               <input type="checkbox" onChange={() => handleCheck(x.id)} />
@@ -59,7 +69,12 @@ function App() {
               >
                 {x.task}
               </label>
-              <button onClick={() => hanldeDelete(x.id)}>Delete</button>
+              <button
+                onClick={() => hanldeDelete(x.id)}
+                style={{ marginLeft: "20px" }}
+              >
+                Delete
+              </button>
             </div>
           );
         })}
