@@ -22,7 +22,6 @@ function App() {
       task: inputValue,
       completed: false,
     };
-    console.log(todoObj);
     if (inputValue !== "") {
       setTodo((prev) => [...prev, todoObj]);
     }
@@ -63,10 +62,10 @@ function App() {
         todo?.map((x: todoObjInterface) => {
           return (
             <div key={x.id}>
-              <input type="checkbox" onChange={() => handleCheck(x.id)} />
               <label
                 style={{ textDecoration: x.completed ? "line-through" : "" }}
               >
+                <input type="checkbox" onChange={() => handleCheck(x.id)} />
                 {x.task}
               </label>
               <button
