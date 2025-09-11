@@ -35,3 +35,19 @@ const numGreaterThanTwo = nums.filter((num, i, arr) => {
 });
 
 console.log("polyfill filter result", numGreaterThanTwo);
+
+// poyfill for reduce
+
+Array.prototype.myReduce = function (cb, initialValue) {
+  var accumulator = initialValue;
+  for (let i = 0; i < this.length; i++) {
+    accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i];
+  }
+  return accumulator;
+};
+
+const accResult = nums.myReduce((acc, curr, i, arr) => {
+  return acc + curr;
+});
+
+console.log("Reduce Polyfill Result", accResult);
