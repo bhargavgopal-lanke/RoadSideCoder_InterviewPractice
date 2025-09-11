@@ -1,6 +1,6 @@
 // custom map function created using polyfills
 // it works in older version of browsers
-
+// Polyfill Map method
 Array.prototype.myMap = function (cb) {
   let temp = [];
   for (let i = 0; i < this.length; i++) {
