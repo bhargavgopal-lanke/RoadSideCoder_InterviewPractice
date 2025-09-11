@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserInfo } from "../Slice/UserInfoSlice";
 
@@ -6,6 +6,15 @@ const Profile = () => {
   //   type userDataType = { username: string; password: string };
   //   const [userData, setUserData] = useState<userDataType>({ username: "", password: "" });
   const dispatch = useDispatch();
+
+  interface store {
+    userData: {
+      userInfo: {
+        username: string;
+        password: string;
+      };
+    };
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -15,7 +24,7 @@ const Profile = () => {
   };
 
   const { username, password } = useSelector(
-    (state) => state?.userData?.userInfo
+    (state: store) => state?.userData?.userInfo
   );
 
   return (
